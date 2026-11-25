@@ -20,3 +20,4 @@ mobile/android/capacitor-cordova-android-plugins/build/
 mobile/android/local.properties
 tests/results/**/*.png
 .DS_Store
+artifacts-*/

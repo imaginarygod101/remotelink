@@ -1,6 +1,6 @@
 {
   "name": "remotelink",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "RemoteLink - transparent, consent-based remote desktop",
   "main": "src/main.js",
   "scripts": {

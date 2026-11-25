@@ -4,7 +4,7 @@
 <style>body{font-family:sans-serif;margin:0;background:#0f172a;color:#e2e8f0}header{padding:10px;background:#1e40af;font-weight:bold}main{padding:10px}
 video{width:100%;background:#000;touch-action:none}input,button{font-size:17px;padding:8px;margin:3px 0}#srv{width:95%}#end{background:#dc2626;color:#fff;border:0}
 small{opacity:.75}</style></head>
-<body><header>RemoteLink Viewer <small id="ver">v0.2.0</small></header><main>
+<body><header>RemoteLink Viewer <small id="ver">v0.2.1</small></header><main>
 <details><summary>Settings</summary><small>Signaling server (must match the computer you connect to). Paste the wss:// (or https://) address from the RemoteLink download page.</small><br>
 <input id="srv" spellcheck="false" autocapitalize="off"><button id="save">Save</button><button id="reset">Reset</button></details>
 <input id="code" placeholder="9-digit session code" inputmode="numeric"> <button id="go">Connect</button> <button id="end">End</button>
@@ -13,7 +13,7 @@ small{opacity:.75}</style></head>
 <p><small>This app only views a computer whose owner approved the session on screen. Tap the picture to click (only if the host allowed control).</small></p></main>
 <script>
 // Viewer-only. Same protocol as desktop/src/renderer.js (join -> waiting_approval -> approved -> signal). Host must approve on its own screen.
-const DEFAULT_SERVER='wss://nfu3r8pw.workslocal.exposed';
+const DEFAULT_SERVER='wss://remotelink-signal.onrender.com';
 let ws,pc,dc,token,ice;const $=i=>document.getElementById(i),st=t=>$('st').textContent=t,sig=d=>ws.send(JSON.stringify({type:'signal',token,data:d}));
 const okUrl=u=>{try{const x=new URL(u);return x.protocol==='wss:'||(x.protocol==='ws:'&&['localhost','127.0.0.1'].includes(x.hostname))}catch{return false}};
 $('srv').value=localStorage.getItem('rl_server')||DEFAULT_SERVER;
