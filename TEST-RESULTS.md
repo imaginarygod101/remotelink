@@ -1,3 +1,19 @@
+# RemoteLink 0.2.1 test results (2026-11-25, times WAT/UTC+1)
+Signaling: Render free web service `wss://remotelink-signal.onrender.com` (Frankfurt). Machine: Debian 13 box (rebuilt at ~18:33 WAT), Xvfb 1280×800. Evidence: `tests/results/render/`.
+
+| # | Test | Result |
+|---|---|---|
+| R1 | `/healthz` on Render | 200 OK |
+| R2 | Signaling RTT to Render (`tools-scripts/signaling-rtt.js`) | connect 372 ms; RTT p50 104.3 / p95 116.6 / max 119.6 ms (`tests/results/render-signaling-rtt.json`) |
+| R3 | Packaged 0.2.1 AppImage host, `RL_E2E=1` set, ← dev viewer | "RL_E2E ignored" logged; consent modal waited for a click and showed the viewer's real IP (104.28.219.97, via X-Forwarded-For), control unticked |
+| R4 | R3 with control ticked + Allow | 29.1 fps, 382 frames decoded, DC RTT p50 1.3 / p95 2.2 ms, approve→connected 223 ms, 3/3 moves injected (1–3 ms), cursor at 960,480, host/udp pair |
+| R5 | `.deb` downloaded from GitHub, `apt install`, launched `/opt/RemoteLink/remotelink`, host ← dev viewer, view-only Allow | 29.1 fps, DC RTT p50 1.2 / p95 2.0 ms, approve→connected 236 ms, **0 injected**, cursor unmoved (correct). `apt remove` clean |
+| R6 | All six v0.2.1 assets downloaded from public GitHub Release URLs (no auth) | `sha256sum -c` all OK (`github-release-sha256-check.txt`) |
+| R7 | Android 0.2.1 APK on emulator | **Not run**: after the box rebuild the emulator's guest CPU never started (KVM reported usable, but no kernel output and no adb device in 3 attempts). APK checked statically: label RemoteLink, versionName 0.2.1, default server = Render URL |
+| R8 | Windows | Not run (no Windows machine; Wine inconclusive in 0.2.0) |
+
+STUN/NAT traversal across real networks is still **unverified**: both ends ran on one machine.
+
 # RemoteLink 0.2.0 test results (2026-11-25, times WAT/UTC+1)
 Machine: Debian 13 box, Xvfb 1280×800, Electron 39 (bundled), Android 14 emulator (x86_64, KVM). Public signaling: `wss://znvjbtih…` then, for the final release build, `wss://nfu3r8pw.workslocal.exposed` (separate tunnel from the download page, so downloads can't take signaling down).
 

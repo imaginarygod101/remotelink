@@ -1,4 +1,7 @@
-# Compatibility matrix (0.2.0, 2026-11-25)
+# Compatibility matrix (0.2.1, 2026-11-25)
+**0.2.1 update (Render signaling `wss://remotelink-signal.onrender.com`):** Linux packaged AppImage host ← Linux viewer: connect ✅, view ✅ 1280×800 @ 29.1 fps, mouse injection ✅ (3/3, cursor 960,480), DC RTT p50 1.3 ms. Installed .deb host, view-only: ✅ 29.1 fps, input blocked ✅. Signaling RTT to Render p50 104 ms. Android 0.2.1 APK **not re-tested** (emulator would not boot on the rebuilt test machine); Android rows below come from the 0.2.0 run. Both ends still on one machine.
+
+### 0.2.0 results (via the old tunnel)
 **Actually run:** Linux→Linux (two app instances on one machine, Xvfb) and Android 14 *emulator* → Linux, both with signaling through the public wss:// tunnel. Media stayed on the local machine (host candidates). **No test between two physical devices on different networks yet.** Nothing is marked working just because code exists.
 
 Linux (packaged AppImage host) ← Linux viewer via public signaling: connect ✅, view ✅ 1280×800 @ 28.2–29.4 fps, mouse-move injection ✅ (cursor verified at 960,480), view-only blocks input ✅, data-channel RTT p50 1.0 ms, approve→connected 107–161 ms, relay: none (host/udp pair).

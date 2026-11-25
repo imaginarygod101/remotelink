@@ -1,0 +1,14 @@
+[27104:1125/185533.662202:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[27104:1125/185533.889571:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[27104:1125/185533.889746:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[27133:1125/185533.942027:ERROR:gpu/command_buffer/service/gpu_persistent_cache.cc:137] Persistent cache error: 1
+STATUS Connecting to wss://remotelink-signal.onrender.com …
+STATUS Waiting for the host to approve…
+STATUS Approved. Connecting…
+PC connecting
+PC connected
+STATUS Connected
+RESULT={"resolution":"1280x800","fps":29.1,"rtt_ms":{"p50":1.3,"p95":2.2,"max":2.5},"framesDecoded":382,"iceRtt_ms":1,"pair":"host/udp -> host/udp","stunSrflxCandidates":0,"approvedToConnected_ms":223}
+STATUS Session ended: test complete
+STATUS Session ended: viewer_ended
+/workspace/remotelink/desktop/node_modules/electron/dist/electron exited with signal SIGTERM

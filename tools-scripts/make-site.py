@@ -1,75 +1,70 @@
 #!/usr/bin/env python3
-"""Generates site/index.html + site/manifest.json for the RemoteLink download page from site/downloads/."""
+"""Generates site/index.html + site/manifest.json for the RemoteLink download page.
+Hashes/sizes come from artifacts-<VERSION>/ (the exact files uploaded to the GitHub Release);
+download links point at the GitHub Release assets."""
 import hashlib, json, os, html, datetime
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); D = os.path.join(ROOT, 'site', 'downloads')
+VERSION = '0.2.1'
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+D = os.path.join(ROOT, f'artifacts-{VERSION}')
+REL = f'https://github.com/imaginarygod101/remotelink/releases/download/v{VERSION}/'
+REPO = 'https://github.com/imaginarygod101/remotelink'
+SIGNAL = 'wss://remotelink-signal.onrender.com'
+V = VERSION
 INFO = {
- 'RemoteLink-Setup-0.2.0-win-x64.exe': ('Windows 10/11 (64-bit)', 'Installer (choose folder, Start-menu + desktop shortcut, uninstaller in Apps & features)', 'untested', 'Built on Linux with electron-builder + NSIS. Not yet run on a real Windows PC (Wine could not render Electron). Unsigned: SmartScreen will warn.'),
- 'RemoteLink-0.2.0-win-x64.zip': ('Windows 10/11 (64-bit)', 'Portable: unzip, run RemoteLink.exe, nothing installed', 'untested', 'Same app as the installer; not yet run on real Windows. Unsigned.'),
- 'RemoteLink-0.2.0-linux-x86_64.AppImage': ('Linux x86_64 (X11)', 'chmod +x, then run', 'tested', 'Tested on Debian 13 (Xvfb/X11): host consent, SESSION ACTIVE banner, view-only and control sessions over the public signaling URL. Wayland sessions untested.'),
- 'RemoteLink-0.2.0-linux-amd64.deb': ('Debian/Ubuntu x86_64', 'sudo apt install ./file.deb', 'untested', 'Same app as the AppImage; package not install-tested.'),
- 'RemoteLink-Viewer-0.2.0-android-debug.apk': ('Android 7+ (viewer only)', 'Allow "install unknown apps" for your browser, then open the APK', 'tested (emulator)', 'Debug-signed test build. Tested on an Android 14 emulator viewing a Linux host: live screen + tap-to-click. Not tested on a physical phone. Cannot share/control the phone itself.'),
- 'RemoteLink-0.2.0-source.tar.gz': ('Any', 'Full source: server, desktop, mobile, tests', 'n/a', 'Build macOS/iOS from this on a Mac (see DEPLOY.md).'),
+ f'RemoteLink-Setup-{V}-win-x64.exe': ('Windows 10/11 (64-bit)', 'Installer: choose a folder; adds Start-menu and desktop shortcuts and an uninstaller in Apps & features', 'untested', 'Built on Linux with electron-builder + NSIS. Not yet run on a real Windows PC (Wine could not render Electron). Unsigned, so SmartScreen will warn.'),
+ f'RemoteLink-{V}-win-x64.zip': ('Windows 10/11 (64-bit)', 'Portable: unzip and run RemoteLink.exe. Nothing is installed.', 'untested', 'Same app as the installer. Not yet run on real Windows. Unsigned.'),
+ f'RemoteLink-{V}-linux-x86_64.AppImage': ('Linux x86_64 (X11)', 'chmod +x, then run it', 'tested', 'Tested on Debian 13 (Xvfb/X11) as host through the public Render server: consent prompt, SESSION ACTIVE banner, control and view-only sessions. Wayland untested.'),
+ f'RemoteLink-{V}-linux-amd64.deb': ('Debian/Ubuntu x86_64', 'sudo apt install ./RemoteLink-' + V + '-linux-amd64.deb', 'tested', 'Installed with apt on Debian 13, launched from /opt/RemoteLink and used as host through the Render server (view-only session); removed cleanly with apt remove.'),
+ f'RemoteLink-Viewer-{V}-android-debug.apk': ('Android 7+ (viewer only)', 'Allow "install unknown apps" for your browser, then open the APK', 'not re-tested', f'Debug-signed test build. {V} is not re-tested: the emulator would not boot on the rebuilt test machine. The same viewer code (0.2.0) was tested on an Android 14 emulator: live screen and tap-to-click. Never tested on a physical phone. It cannot share or control the phone itself.'),
+ f'RemoteLink-{V}-source.tar.gz': ('Any', 'Full source: server, desktop, mobile, tests', 'n/a', 'Build macOS/iOS from this on a Mac (see DEPLOY.md).'),
 }
 files = []
-for f in sorted(os.listdir(D)):
-    if f not in INFO: continue
+for f in INFO:
     p = os.path.join(D, f); h = hashlib.sha256(open(p, 'rb').read()).hexdigest(); s = os.path.getsize(p)
     os_, how, status, note = INFO[f]
-    files.append(dict(name=f, size=s, sha256=h, os=os_, how=how, status=status, note=note))
-json.dump({'version': '0.2.0', 'generated': datetime.datetime.now().astimezone().isoformat(timespec='seconds'), 'files': files}, open(os.path.join(ROOT, 'site', 'manifest.json'), 'w'), indent=2)
+    files.append(dict(name=f, url=REL + f, size=s, sha256=h, os=os_, how=how, status=status, note=note))
+now = datetime.datetime.now().astimezone()
+json.dump({'version': V, 'release': f'{REPO}/releases/tag/v{V}', 'signaling': SIGNAL, 'generated': now.isoformat(timespec='seconds'), 'files': files}, open(os.path.join(ROOT, 'site', 'manifest.json'), 'w'), indent=2)
+json.dump({'url': SIGNAL, 'since': now.isoformat(timespec='seconds')}, open(os.path.join(ROOT, 'site', 'signaling.json'), 'w'))
 mb = lambda s: f'{s/1048576:.1f} MB'
-rows = ''.join(f'''<tr><td><b>{html.escape(x["name"])}</b><br><small>{html.escape(x["how"])}</small></td><td>{html.escape(x["os"])}</td><td>{mb(x["size"])}</td>
-<td><span class="st {'ok' if x['status'].startswith('tested') else 'un'}">{html.escape(x["status"])}</span><br><small>{html.escape(x["note"])}</small></td>
-<td><button data-f="{html.escape(x["name"])}" data-h="{x["sha256"]}" data-s="{x["size"]}">Download</button><br><small><a href="downloads/{html.escape(x["name"])}" download>direct link</a></small><div class="pr"></div></td></tr>
+e = html.escape
+rows = ''.join(f'''<tr><td><b>{e(x["name"])}</b><br><small>{e(x["how"])}</small></td><td>{e(x["os"])}</td><td>{mb(x["size"])}</td>
+<td><span class="st {'ok' if x['status'].startswith('tested') else 'un'}">{e(x["status"])}</span><br><small>{e(x["note"])}</small></td>
+<td><a class="btn" href="{e(x["url"])}">Download</a></td></tr>
 <tr class="h"><td colspan="5"><code>SHA-256 {x["sha256"]}</code></td></tr>''' for x in files)
 page = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>RemoteLink 0.2.0 — downloads</title><style>
+<title>RemoteLink {V}: downloads</title><style>
 body{{font-family:system-ui,sans-serif;margin:0;background:#0f172a;color:#e2e8f0;line-height:1.45}}header{{background:#1e40af;padding:18px 24px}}header h1{{margin:0;font-size:26px}}
 main{{max-width:1100px;margin:auto;padding:16px 24px}}table{{border-collapse:collapse;width:100%}}td,th{{padding:8px;border-bottom:1px solid #334155;vertical-align:top;text-align:left}}
 tr.h td{{border-bottom:2px solid #475569;padding-top:0}}code{{font-size:12px;word-break:break-all;color:#94a3b8}}small{{color:#94a3b8}}
-.st{{padding:2px 8px;border-radius:10px;font-size:13px}}.ok{{background:#166534}}.un{{background:#92400e}}button{{padding:7px 14px;font-size:15px;cursor:pointer}}
+.st{{padding:2px 8px;border-radius:10px;font-size:13px}}.ok{{background:#166534}}.un{{background:#92400e}}
+.btn{{display:inline-block;padding:7px 14px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none}}
 .box{{background:#1e293b;border-radius:8px;padding:12px 18px;margin:14px 0}}.warn{{border-left:4px solid #f59e0b}}a{{color:#93c5fd}}#sig{{font-size:17px;color:#fde68a}}
-.pr{{font-size:12px;color:#a7f3d0;max-width:180px}}</style></head><body>
-<header><h1>RemoteLink 0.2.0</h1><div>Transparent, consent-based remote desktop. Open source test release.</div></header><main>
-<div class="box warn"><b>Test release, so please read this first.</b> These builds are <b>unsigned</b>. Windows SmartScreen will say "Windows protected your PC" (click <i>More info → Run anyway</i> only if the SHA-256 below matches).
-This page and the signaling server run on free temporary tunnels from one test computer. They <b>expire after about 2 hours, drop after a few hundred MB of downloads, and come back at a new address</b>. If a download fails, reload this page from its newest address. There is no TURN relay yet, so some networks (strict corporate or carrier NAT) will not connect.
-macOS and iOS builds are not available yet (they must be built and signed on a Mac).</div>
-<div class="box"><b>What RemoteLink does:</b> one computer (the <i>host</i>) shows a 9-digit code. Another device (the <i>viewer</i>) enters it. Nothing is shared until the person at the host clicks <b>Allow</b>. Control of mouse/keyboard is a separate, unticked-by-default checkbox.
+</style></head><body>
+<header><h1>RemoteLink {V}</h1><div>Transparent, consent-based remote desktop. Open-source test release.</div></header><main>
+<div class="box warn"><b>Test release: please read this first.</b> These builds are <b>unsigned</b>. Windows SmartScreen will say "Windows protected your PC". Click <i>More info → Run anyway</i> only if the file's SHA-256 matches the one below.
+The signaling server runs on Render's free plan. <b>It sleeps after about 15 minutes without use, so the first connection after a quiet period can take about a minute.</b>
+There is no TURN relay yet, so some networks (strict corporate or carrier NAT) will not connect.
+macOS and iOS builds are not available yet; they must be built and signed on a Mac.</div>
+<div class="box"><b>What RemoteLink does:</b> one computer (the <i>host</i>) shows a 9-digit code. Another device (the <i>viewer</i>) enters it. Nothing is shared until the person at the host clicks <b>Allow</b>. Control of the mouse and keyboard is a separate checkbox that starts unticked.
 While a session runs, the host shows a red <b>SESSION ACTIVE</b> banner with an <b>End session</b> button. Either side can end it at any time. Nothing runs in the background or at startup.</div>
-<h2>Downloads</h2><p><small>"Download" fetches the file in pieces (this temporary tunnel limits single responses to about 20 MB), checks its SHA-256 in your browser, and then saves it under its real name. For files over 20 MB the direct link may fail on this tunnel. Full list: <a href="downloads/SHA256SUMS.txt">SHA256SUMS.txt</a>.</small></p>
+<h2>Downloads</h2><p><small>Files are served from the <a href="{REPO}/releases/tag/v{V}">GitHub Release v{V}</a>. Check them against <a href="{REL}SHA256SUMS.txt">SHA256SUMS.txt</a> (Linux/macOS: <code>sha256sum -c SHA256SUMS.txt</code>; Windows PowerShell: <code>Get-FileHash .\\file</code>). Source code: <a href="{REPO}">{REPO}</a>.</small></p>
 <table><tr><th>File</th><th>System</th><th>Size</th><th>Status</th><th></th></tr>{rows}</table>
 <h2>How to connect two of your own devices</h2><ol>
-<li>Install RemoteLink on the computer you want to see or control (the host), and on the device you're connecting from (computer or Android viewer).</li>
-<li>Both apps must use the same signaling server. This page's server is:<br><code id="sig"></code><br>Builds downloaded from this page use the address that was current when they were built. If it has changed since, paste the address above into <b>Settings → Signaling server → Save</b> (Android: Settings → Save).</li>
-<li>On the host, click <b>Share my screen (Host)</b>. A 9-digit code appears. It's valid for 10 minutes and works once.</li>
+<li>Install RemoteLink on the computer you want to see or control (the host), and on the device you're connecting from (a computer or the Android viewer).</li>
+<li>Both apps must use the same signaling server. Builds from this page already use:<br><code id="sig">{SIGNAL}</code><br>You can check or change it under <b>Settings → Signaling server</b>.</li>
+<li>On the host, click <b>Share my screen (Host)</b>. A 9-digit code appears. It works once and is valid for 10 minutes.</li>
 <li>On the viewer, type the code and click <b>Connect</b>.</li>
 <li>On the host, a "RemoteLink connection request" appears. Click <b>Allow</b>. Tick "Also allow control of my mouse and keyboard" only if you want the viewer to control it.</li>
 <li>To stop, click <b>End session</b> on either side, or close the app.</li></ol>
-<p><small>Linux hosts: an X11 session is required for screen capture and input (Wayland is untested). macOS hosts (when built) will need Screen Recording and Accessibility permission in System Settings. Phones can be viewers only. iPhone cannot be remote-controlled because iOS provides no API for that.</small></p>
-<h2>What has been tested</h2><ul>
-<li>Linux AppImage (packaged) as host ↔ Linux viewer, through this public signaling URL: consent prompt shown, <b>not</b> auto-approved, 29.4 fps at 1280×800, data-channel RTT p50 1.0 ms, view-only correctly blocked input.</li>
-<li>Android 14 emulator (this APK) as viewer → Linux host via the public URL: live screen at 27 fps, ICE RTT 12 ms, tap-to-click injected on the host, End from phone closed the host session.</li>
-<li>Signaling over the public wss:// URL: connect 0.15–0.46 s, message RTT p50 29–32 ms / p95 33–41 ms.</li>
-<li>Second connection request on the host starts with "allow control" unticked again. A bug where it stayed ticked was found and fixed in this build.</li>
-<li><b>Not yet tested:</b> two physical devices on different home/mobile networks, Windows on real hardware, the .deb install, macOS, iOS.</li></ul>
-<p><small>Generated {datetime.datetime.now().astimezone().strftime("%Y-%m-%d %H:%M %Z")}. Source code is included in the source archive above.</small></p>
-</main><script>
-fetch('signaling.json', {{ cache: 'no-store' }}).then(r => r.json()).then(j => {{ document.getElementById('sig').textContent = j.url; }}).catch(() => {{ document.getElementById('sig').textContent = '(signaling server offline)'; }});
-const CH = 8 * 1024 * 1024;
-async function get(btn) {{
-  const name = btn.dataset.f, want = btn.dataset.h, size = +btn.dataset.s, pr = btn.parentElement.querySelector('.pr'); btn.disabled = true;
-  try {{ const parts = [];
-    for (let off = 0; off < size; off += CH) {{ const end = Math.min(off + CH, size) - 1; let ok = false;
-      for (let t = 0; t < 5 && !ok; t++) {{ try {{ const r = await fetch('downloads/' + encodeURIComponent(name), {{ headers: {{ Range: `bytes=${{off}}-${{end}}` }}, cache: 'no-store' }});
-        const b = await r.arrayBuffer(); if ((r.status === 206 || r.status === 200) && b.byteLength === end - off + 1) {{ parts.push(b); ok = true; }} }} catch (e) {{}} }}
-      if (!ok) throw new Error('chunk failed at ' + off); pr.textContent = `Downloading… ${{Math.round(100 * (end + 1) / size)}}%`; }}
-    pr.textContent = 'Checking SHA-256…'; const blob = new Blob(parts, {{ type: 'application/octet-stream' }});
-    const got = [...new Uint8Array(await crypto.subtle.digest('SHA-256', await blob.arrayBuffer()))].map(x => x.toString(16).padStart(2, '0')).join('');
-    if (got !== want) throw new Error('SHA-256 mismatch, file not saved');
-    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove();
-    pr.textContent = 'Saved as ' + name + ' (SHA-256 verified ✓)';
-  }} catch (e) {{ pr.textContent = 'Failed: ' + e.message + '. Try again or use the direct link.'; }} finally {{ btn.disabled = false; }}
-}}
-document.querySelectorAll('button[data-f]').forEach(b => b.onclick = () => get(b));
-</script></body></html>'''
+<p><small>Linux hosts need an X11 session for screen capture and input (Wayland is untested). macOS hosts (once built) will need Screen Recording and Accessibility permission in System Settings. Phones can be viewers only. An iPhone cannot be remote-controlled because iOS provides no API for that.</small></p>
+<h2>What has been tested (2026-11-25)</h2><ul>
+<li>Packaged {V} AppImage as host, Linux viewer, through the Render signaling server: consent prompt showed the viewer's real IP and was <b>not</b> auto-approved; with control allowed: 29.1 fps at 1280×800, data-channel RTT p50 1.3 ms, 3 of 3 mouse moves injected.</li>
+<li>Installed {V} .deb as host, view-only: 29.1 fps, RTT p50 1.2 ms, viewer input <b>not</b> applied (correct).</li>
+<li>Signaling round-trip to Render (Frankfurt) from the test machine: connect 372 ms, message RTT p50 104 ms, p95 117 ms.</li>
+<li>All six release files downloaded from GitHub match SHA256SUMS.txt.</li>
+<li>Android viewer: 0.2.0 tested on an Android 14 emulator (29.4 fps, tap-to-click). {V} APK not re-run.</li>
+<li><b>Not yet tested:</b> two physical devices on different home/mobile networks, Windows on real hardware, a physical Android phone, macOS, iOS. In every test above, both ends ran on the same machine, so video went directly between them.</li></ul>
+<p><small>Generated {now.strftime("%Y-%m-%d %H:%M")} WAT (UTC+1).</small></p>
+</main></body></html>'''
 open(os.path.join(ROOT, 'site', 'index.html'), 'w').write(page); print('wrote', len(files), 'files')

@@ -1,0 +1,6 @@
+RemoteLink-0.2.1-linux-amd64.deb: OK
+RemoteLink-0.2.1-linux-x86_64.AppImage: OK
+RemoteLink-0.2.1-source.tar.gz: OK
+RemoteLink-0.2.1-win-x64.zip: OK
+RemoteLink-Setup-0.2.1-win-x64.exe: OK
+RemoteLink-Viewer-0.2.1-android-debug.apk: OK

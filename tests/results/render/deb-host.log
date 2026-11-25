@@ -1,0 +1,14 @@
+[35464:1125/190836.214121:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[35464:1125/190836.426623:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[35464:1125/190836.426704:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+STATUS Connecting to wss://remotelink-signal.onrender.com …
+STATUS Share this code. Nobody can connect without your approval.
+STATUS Session active. Click "End session" at any time.
+PC connecting
+PC connected
+[35512:1125/190940.217567:ERROR:third_party/webrtc/media/sctp/dcsctp_transport.cc:560] DcSctpTransport0->OnAborted(error=PEER_REPORTED, message=User-Initiated Abort, reason=Close called).
+[35512:1125/190940.218053:ERROR:third_party/blink/renderer/modules/peerconnection/rtc_data_channel.cc:739] DataChannel error: "User-Initiated Abort, reason=Close called", code: 12
+STATUS Session ended: viewer_ended
+[35464:1125/190948.306689:ERROR:content/common/zygote/zygote_communication_linux.cc:313] Failed to send GetTerminationStatus message to zygote
+[35464:1125/190948.309528:ERROR:content/browser/network_service_instance_impl.cc:652] Network service crashed or was terminated, restarting service.
+[35464:1125/190948.316811:ERROR:content/common/zygote/zygote_communication_linux.cc:313] Failed to send GetTerminationStatus message to zygote

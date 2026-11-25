@@ -1,0 +1,13 @@
+[35864:1125/190903.219457:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[35864:1125/190903.423074:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[35864:1125/190903.423132:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[35894:1125/190903.489721:ERROR:gpu/command_buffer/service/gpu_persistent_cache.cc:137] Persistent cache error: 1
+STATUS Connecting to wss://remotelink-signal.onrender.com …
+STATUS Waiting for the host to approve…
+STATUS Approved. Connecting…
+PC connecting
+PC connected
+STATUS Connected
+RESULT={"resolution":"1280x800","fps":29.1,"rtt_ms":{"p50":1.2,"p95":2,"max":3.8},"framesDecoded":381,"iceRtt_ms":1,"pair":"host/udp -> host/udp","stunSrflxCandidates":0,"approvedToConnected_ms":236}
+STATUS Session ended: test complete
+STATUS Session ended: viewer_ended

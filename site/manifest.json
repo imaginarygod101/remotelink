@@ -1,60 +1,68 @@
 {
-  "version": "0.2.0",
-  "generated": "2026-11-25T18:21:05+01:00",
+  "version": "0.2.1",
+  "release": "https://github.com/imaginarygod101/remotelink/releases/tag/v0.2.1",
+  "signaling": "wss://remotelink-signal.onrender.com",
+  "generated": "2026-11-25T19:10:29+01:00",
   "files": [
     {
-      "name": "RemoteLink-0.2.0-linux-amd64.deb",
-      "size": 105627000,
-      "sha256": "98d216f7f0db2f5e1ae6cd5a71d04dbf123c62dd39ee7674e8593268b6e4a8b7",
-      "os": "Debian/Ubuntu x86_64",
-      "how": "sudo apt install ./file.deb",
+      "name": "RemoteLink-Setup-0.2.1-win-x64.exe",
+      "url": "https://github.com/imaginarygod101/remotelink/releases/download/v0.2.1/RemoteLink-Setup-0.2.1-win-x64.exe",
+      "size": 125449164,
+      "sha256": "31b770c6f7306a321da7daf80f7715718c1b700271f21ccb6d735d8083730313",
+      "os": "Windows 10/11 (64-bit)",
+      "how": "Installer: choose a folder; adds Start-menu and desktop shortcuts and an uninstaller in Apps & features",
       "status": "untested",
-      "note": "Same app as the AppImage; package not install-tested."
+      "note": "Built on Linux with electron-builder + NSIS. Not yet run on a real Windows PC (Wine could not render Electron). Unsigned, so SmartScreen will warn."
     },
     {
-      "name": "RemoteLink-0.2.0-linux-x86_64.AppImage",
-      "size": 130533792,
-      "sha256": "27a9f92e27aa717e64ef6eaade222cbad149b08d1c941ced989c5e11ae55e0c2",
+      "name": "RemoteLink-0.2.1-win-x64.zip",
+      "url": "https://github.com/imaginarygod101/remotelink/releases/download/v0.2.1/RemoteLink-0.2.1-win-x64.zip",
+      "size": 158281635,
+      "sha256": "c56452a885fe43c6ab49b466083ee5dc6ab8d1fa275301bb79b80e1148604b5d",
+      "os": "Windows 10/11 (64-bit)",
+      "how": "Portable: unzip and run RemoteLink.exe. Nothing is installed.",
+      "status": "untested",
+      "note": "Same app as the installer. Not yet run on real Windows. Unsigned."
+    },
+    {
+      "name": "RemoteLink-0.2.1-linux-x86_64.AppImage",
+      "url": "https://github.com/imaginarygod101/remotelink/releases/download/v0.2.1/RemoteLink-0.2.1-linux-x86_64.AppImage",
+      "size": 130533793,
+      "sha256": "41c144dbfc8d2e273c5b4539419798ed374497b8cc06cf5b582d0fb2ba1d8221",
       "os": "Linux x86_64 (X11)",
-      "how": "chmod +x, then run",
+      "how": "chmod +x, then run it",
       "status": "tested",
-      "note": "Tested on Debian 13 (Xvfb/X11): host consent, SESSION ACTIVE banner, view-only and control sessions over the public signaling URL. Wayland sessions untested."
+      "note": "Tested on Debian 13 (Xvfb/X11) as host through the public Render server: consent prompt, SESSION ACTIVE banner, control and view-only sessions. Wayland untested."
     },
     {
-      "name": "RemoteLink-0.2.0-source.tar.gz",
-      "size": 329083,
-      "sha256": "1be0971f79bc2e674452b7f1f8479fbe54cb1163fb907e177e51825f44f6628f",
+      "name": "RemoteLink-0.2.1-linux-amd64.deb",
+      "url": "https://github.com/imaginarygod101/remotelink/releases/download/v0.2.1/RemoteLink-0.2.1-linux-amd64.deb",
+      "size": 105627184,
+      "sha256": "54a6ecd7cd4ecffcc38f652a410f9bcd25d0838a219bb908c31eb114005ae104",
+      "os": "Debian/Ubuntu x86_64",
+      "how": "sudo apt install ./RemoteLink-0.2.1-linux-amd64.deb",
+      "status": "tested",
+      "note": "Installed with apt on Debian 13, launched from /opt/RemoteLink and used as host through the Render server (view-only session); removed cleanly with apt remove."
+    },
+    {
+      "name": "RemoteLink-Viewer-0.2.1-android-debug.apk",
+      "url": "https://github.com/imaginarygod101/remotelink/releases/download/v0.2.1/RemoteLink-Viewer-0.2.1-android-debug.apk",
+      "size": 4094600,
+      "sha256": "6451b3833d33db920248a8123a6777d39ea83d828193c5bc92917847e25ba452",
+      "os": "Android 7+ (viewer only)",
+      "how": "Allow \"install unknown apps\" for your browser, then open the APK",
+      "status": "not re-tested",
+      "note": "Debug-signed test build. 0.2.1 is not re-tested: the emulator would not boot on the rebuilt test machine. The same viewer code (0.2.0) was tested on an Android 14 emulator: live screen and tap-to-click. Never tested on a physical phone. It cannot share or control the phone itself."
+    },
+    {
+      "name": "RemoteLink-0.2.1-source.tar.gz",
+      "url": "https://github.com/imaginarygod101/remotelink/releases/download/v0.2.1/RemoteLink-0.2.1-source.tar.gz",
+      "size": 345055,
+      "sha256": "972c3f6e3890d0cf606188c8acfa7d89cf9e7c878bead2e7877ead400448e4e4",
       "os": "Any",
       "how": "Full source: server, desktop, mobile, tests",
       "status": "n/a",
       "note": "Build macOS/iOS from this on a Mac (see DEPLOY.md)."
-    },
-    {
-      "name": "RemoteLink-0.2.0-win-x64.zip",
-      "size": 158281640,
-      "sha256": "339138c51417a763038d1488ab4270a357439b1f98600e81882fc8657e7b8e11",
-      "os": "Windows 10/11 (64-bit)",
-      "how": "Portable: unzip, run RemoteLink.exe, nothing installed",
-      "status": "untested",
-      "note": "Same app as the installer; not yet run on real Windows. Unsigned."
-    },
-    {
-      "name": "RemoteLink-Setup-0.2.0-win-x64.exe",
-      "size": 125448990,
-      "sha256": "04f63944b676b9d4debdb23a089ec17310a6930ebc4e59ec815c09c52bc39a17",
-      "os": "Windows 10/11 (64-bit)",
-      "how": "Installer (choose folder, Start-menu + desktop shortcut, uninstaller in Apps & features)",
-      "status": "untested",
-      "note": "Built on Linux with electron-builder + NSIS. Not yet run on a real Windows PC (Wine could not render Electron). Unsigned: SmartScreen will warn."
-    },
-    {
-      "name": "RemoteLink-Viewer-0.2.0-android-debug.apk",
-      "size": 4363955,
-      "sha256": "313e4f701433a1e0f2a9455a984848b16bad1196097a4d845bb86a1448869efc",
-      "os": "Android 7+ (viewer only)",
-      "how": "Allow \"install unknown apps\" for your browser, then open the APK",
-      "status": "tested (emulator)",
-      "note": "Debug-signed test build. Tested on an Android 14 emulator viewing a Linux host: live screen + tap-to-click. Not tested on a physical phone. Cannot share/control the phone itself."
     }
   ]
 }
