@@ -1,0 +1,9 @@
+PASS input: OS cursor at last injected point (960,480)
+PASS session ended cleanly
+
+RESULT={"resolution":"1280x800","fps":29,"rtt_ms":{"p50":1.4,"p95":2.2,"max":2.5},"framesDecoded":382,"iceRtt_ms":1}
+INJECTED move 320 200 lat_ms=4
+INJECTED move 640 400 lat_ms=2
+INJECTED move 960 480 lat_ms=1
+cursor: x:960 y:480 screen:0 window:10485762
+7 passed, 0 failed

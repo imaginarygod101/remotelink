@@ -1,0 +1,60 @@
+{
+  "version": "0.2.0",
+  "generated": "2026-11-25T18:21:05+01:00",
+  "files": [
+    {
+      "name": "RemoteLink-0.2.0-linux-amd64.deb",
+      "size": 105627000,
+      "sha256": "98d216f7f0db2f5e1ae6cd5a71d04dbf123c62dd39ee7674e8593268b6e4a8b7",
+      "os": "Debian/Ubuntu x86_64",
+      "how": "sudo apt install ./file.deb",
+      "status": "untested",
+      "note": "Same app as the AppImage; package not install-tested."
+    },
+    {
+      "name": "RemoteLink-0.2.0-linux-x86_64.AppImage",
+      "size": 130533792,
+      "sha256": "27a9f92e27aa717e64ef6eaade222cbad149b08d1c941ced989c5e11ae55e0c2",
+      "os": "Linux x86_64 (X11)",
+      "how": "chmod +x, then run",
+      "status": "tested",
+      "note": "Tested on Debian 13 (Xvfb/X11): host consent, SESSION ACTIVE banner, view-only and control sessions over the public signaling URL. Wayland sessions untested."
+    },
+    {
+      "name": "RemoteLink-0.2.0-source.tar.gz",
+      "size": 329083,
+      "sha256": "1be0971f79bc2e674452b7f1f8479fbe54cb1163fb907e177e51825f44f6628f",
+      "os": "Any",
+      "how": "Full source: server, desktop, mobile, tests",
+      "status": "n/a",
+      "note": "Build macOS/iOS from this on a Mac (see DEPLOY.md)."
+    },
+    {
+      "name": "RemoteLink-0.2.0-win-x64.zip",
+      "size": 158281640,
+      "sha256": "339138c51417a763038d1488ab4270a357439b1f98600e81882fc8657e7b8e11",
+      "os": "Windows 10/11 (64-bit)",
+      "how": "Portable: unzip, run RemoteLink.exe, nothing installed",
+      "status": "untested",
+      "note": "Same app as the installer; not yet run on real Windows. Unsigned."
+    },
+    {
+      "name": "RemoteLink-Setup-0.2.0-win-x64.exe",
+      "size": 125448990,
+      "sha256": "04f63944b676b9d4debdb23a089ec17310a6930ebc4e59ec815c09c52bc39a17",
+      "os": "Windows 10/11 (64-bit)",
+      "how": "Installer (choose folder, Start-menu + desktop shortcut, uninstaller in Apps & features)",
+      "status": "untested",
+      "note": "Built on Linux with electron-builder + NSIS. Not yet run on a real Windows PC (Wine could not render Electron). Unsigned: SmartScreen will warn."
+    },
+    {
+      "name": "RemoteLink-Viewer-0.2.0-android-debug.apk",
+      "size": 4363955,
+      "sha256": "313e4f701433a1e0f2a9455a984848b16bad1196097a4d845bb86a1448869efc",
+      "os": "Android 7+ (viewer only)",
+      "how": "Allow \"install unknown apps\" for your browser, then open the APK",
+      "status": "tested (emulator)",
+      "note": "Debug-signed test build. Tested on an Android 14 emulator viewing a Linux host: live screen + tap-to-click. Not tested on a physical phone. Cannot share/control the phone itself."
+    }
+  ]
+}

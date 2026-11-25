@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><title>RemoteLink</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src ws: wss:; media-src blob: mediastream:; style-src 'self' 'unsafe-inline'">
+<style>body{font-family:sans-serif;margin:0;background:#0f172a;color:#e2e8f0}header{padding:10px 16px;background:#1e40af;font-weight:bold}
+#banner{display:none;background:#dc2626;color:#fff;padding:10px 16px;font-weight:bold}#banner button{float:right}
+main{padding:16px}button{padding:8px 14px;margin:4px;font-size:15px}#code{font-size:32px;letter-spacing:4px}
+#modal{display:none;position:fixed;inset:0;background:#000a}#modal div{background:#fff;color:#000;margin:80px auto;width:440px;padding:20px;border-radius:8px}
+video{width:100%;background:#000;cursor:crosshair}</style></head><body>
+<header>RemoteLink — transparent, consent-based remote desktop <small id="ver" style="font-weight:normal;opacity:.7"></small></header>
+<div id="banner">● SESSION ACTIVE — <span id="who"></span> can see your screen<span id="ctl"></span><button id="endBtn">End session</button></div>
+<main>
+ <div id="home"><button id="hostBtn">Share my screen (Host)</button> <input id="codeIn" placeholder="Session code"><button id="joinBtn">Connect (Viewer)</button></div>
+ <details id="settings"><summary>Settings</summary><p>Signaling server (both devices must use the same one):<br>
+  <input id="srvIn" size="60" spellcheck="false"> <button id="saveSrv">Save</button><button id="resetSrv">Reset to default</button></p>
+  <p style="font-size:13px;opacity:.8">Paste the wss:// address (or the https:// download-page address) shown on the RemoteLink download page. Saved on this computer only.</p></details>
+ <p id="status"></p><div id="code"></div><video id="v" autoplay muted playsinline></video><div id="stats"></div>
+</main>
+<div id="modal"><div><h3>RemoteLink connection request</h3><p><b id="reqName"></b> (<span id="reqIp"></span>) wants to view your screen.</p>
+ <label><input type="checkbox" id="allowInput"> Also allow control of my mouse and keyboard</label><br><br>
+ <button id="approve">Allow</button><button id="deny">Deny</button></div></div>
+<script src="renderer.js"></script></body></html>

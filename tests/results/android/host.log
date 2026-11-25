@@ -1,0 +1,15 @@
+[112274:1125/175719.849500:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[112274:1125/175719.852640:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[112274:1125/175719.852702:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[112309:1125/175719.990079:ERROR:gpu/command_buffer/service/gpu_persistent_cache.cc:137] Persistent cache error: 1
+STATUS Connecting to wss://zm07zsbv.workslocal.exposed …
+CODE=070056894
+STATUS Share this code. Nobody can connect without your approval.
+STATUS Session active. Click "End session" at any time.
+PC connecting
+PC connected
+INJECTED click 638 400 lat_ms=271
+[112331:1125/175820.941175:ERROR:third_party/webrtc/p2p/base/stun_port.cc:124] Binding request timed out from 172.30.0.x:33534 (enp0s3)
+[112331:1125/175830.314835:ERROR:third_party/webrtc/media/sctp/dcsctp_transport.cc:560] DcSctpTransport0->OnAborted(error=PEER_REPORTED, message=User-Initiated Abort, reason=Close called).
+[112331:1125/175830.315511:ERROR:third_party/blink/renderer/modules/peerconnection/rtc_data_channel.cc:739] DataChannel error: "User-Initiated Abort, reason=Close called", code: 12
+STATUS Session ended: viewer_ended

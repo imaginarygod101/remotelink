@@ -1,0 +1,18 @@
+signaling: wss://znvjbtih.workslocal.exposed
+session code: 458764592
+PASS signaling: session code issued
+PASS consent: host approved
+PASS webrtc: peer connected
+PASS frames received (fps>5)
+PASS input: 3 moves injected
+PASS input: OS cursor at last injected point (960,480)
+PASS session ended cleanly
+
+RESULT={"resolution":"1280x800","fps":29.2,"rtt_ms":{"p50":0.8,"p95":1.3,"max":2.6},"framesDecoded":384,"iceRtt_ms":1,"pair":"host/udp -> host/udp","stunSrflxCandidates":0,"approvedToConnected_ms":150}
+INJECTED move 320 200 lat_ms=4
+INJECTED move 640 400 lat_ms=1
+INJECTED move 960 480 lat_ms=1
+      1 PC connected
+      1 PC connecting
+cursor: x:960 y:480 screen:0 window:10485762
+7 passed, 0 failed

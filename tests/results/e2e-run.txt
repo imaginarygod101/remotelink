@@ -1,0 +1,15 @@
+session code: 628147536
+PASS signaling: session code issued
+PASS consent: host approved
+PASS webrtc: peer connected
+PASS frames received (fps>5)
+PASS input: 3 moves injected
+PASS input: OS cursor at last injected point (960,480)
+PASS session ended cleanly
+
+RESULT={"resolution":"1280x800","fps":28.9,"rtt_ms":{"p50":1.3,"p95":2.2,"max":2.5},"framesDecoded":383,"iceRtt_ms":1}
+INJECTED move 320 200 lat_ms=2
+INJECTED move 640 400 lat_ms=2
+INJECTED move 960 480 lat_ms=2
+cursor: x:960 y:480 screen:0 window:10485762
+7 passed, 0 failed

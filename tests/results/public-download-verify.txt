@@ -1,0 +1,21 @@
+Public download verification 2026-11-25 18:00 WAT via https://zm07zsbv.workslocal.exposed
+SHA256SUMS.txt fetched: 6 entries
+--: line 1: bc: command not found
+RemoteLink-0.2.0-linux-amd64.deb  105626196 bytes  HASH OK  s
+--: line 1: bc: command not found
+RemoteLink-0.2.0-linux-x86_64.AppImage  134217728 bytes  HASH MISMATCH (expected 14d30c167b4348414639dfd1e2ccf6a3e71ec7bd5a8e1f9f97e645ff340f063b)  s
+--: line 1: bc: command not found
+stat: cannot statx '/tmp/curldl/RemoteLink-0.2.0-source.tar.gz': No such file or directory
+RemoteLink-0.2.0-source.tar.gz   bytes    s
+--: line 1: bc: command not found
+stat: cannot statx '/tmp/curldl/RemoteLink-0.2.0-win-x64.zip': No such file or directory
+RemoteLink-0.2.0-win-x64.zip   bytes    s
+--: line 1: bc: command not found
+stat: cannot statx '/tmp/curldl/RemoteLink-Setup-0.2.0-win-x64.exe': No such file or directory
+RemoteLink-Setup-0.2.0-win-x64.exe   bytes    s
+--: line 1: bc: command not found
+stat: cannot statx '/tmp/curldl/RemoteLink-Viewer-0.2.0-android-debug.apk': No such file or directory
+RemoteLink-Viewer-0.2.0-android-debug.apk   bytes    s
+direct single GET RemoteLink-Viewer-0.2.0-android-debug.apk: 502 sha_ok=no
+direct single GET RemoteLink-0.2.0-source.tar.gz: 502 sha_ok=no
+direct single GET RemoteLink-0.2.0-linux-amd64.deb: 502 sha_ok=no

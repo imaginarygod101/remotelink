@@ -1,0 +1,14 @@
+[104601:1125/175028.635742:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[104601:1125/175028.849596:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[104601:1125/175028.849659:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[104631:1125/175028.892060:ERROR:gpu/command_buffer/service/gpu_persistent_cache.cc:137] Persistent cache error: 1
+STATUS Connecting to wss://zm07zsbv.workslocal.exposed …
+STATUS Waiting for the host to approve…
+STATUS Approved. Connecting…
+PC connecting
+PC connected
+STATUS Connected
+RESULT={"resolution":"1280x800","fps":29.4,"rtt_ms":{"p50":1,"p95":2,"max":3.9},"framesDecoded":382,"iceRtt_ms":1,"pair":"host/udp -> host/udp","stunSrflxCandidates":0,"approvedToConnected_ms":107}
+STATUS Session ended: test complete
+STATUS Session ended: viewer_ended
+/workspace/remotelink/desktop/node_modules/electron/dist/electron exited with signal SIGTERM

@@ -1,0 +1,3 @@
+
+[288:1125/175521.728:ERROR:net\base\network_change_notifier_win.cc:224] WSALookupServiceBegin failed with: 8
+[288:1125/175521.894:ERROR:third_party\crashpad\crashpad\client\crashpad_client_win.cc:887] not connected

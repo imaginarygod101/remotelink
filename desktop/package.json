@@ -1,0 +1,94 @@
+{
+  "name": "remotelink",
+  "version": "0.2.0",
+  "description": "RemoteLink - transparent, consent-based remote desktop",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "keywords": [],
+  "author": {
+    "name": "RemoteLink",
+    "email": "dev@remotelink.invalid"
+  },
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^45.2.3",
+    "electron-builder": "^26.18.0"
+  },
+  "dependencies": {
+    "@nut-tree-fork/nut-js": "^4.2.6",
+    "ws": "^8.22.1"
+  },
+  "productName": "RemoteLink",
+  "homepage": "https://remotelink.invalid",
+  "build": {
+    "appId": "app.remotelink.desktop",
+    "productName": "RemoteLink",
+    "artifactName": "RemoteLink-${version}-${os}-${arch}.${ext}",
+    "files": [
+      "src/**",
+      "assets/icon.png"
+    ],
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Network",
+      "icon": "assets/icon.png",
+      "synopsis": "RemoteLink consent-based remote desktop",
+      "description": "RemoteLink: transparent, consent-based remote desktop. Sessions require on-screen host approval and show a visible SESSION ACTIVE indicator."
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "RemoteLink",
+      "uninstallDisplayName": "RemoteLink",
+      "artifactName": "RemoteLink-Setup-${version}-win-x64.${ext}",
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": false,
+      "menuCategory": false
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.utilities",
+      "hardenedRuntime": true,
+      "entitlements": "assets/entitlements.mac.plist",
+      "extendInfo": {
+        "NSScreenCaptureUsageDescription": "RemoteLink shares your screen only during a session you approve.",
+        "NSAppleEventsUsageDescription": "RemoteLink lets an approved viewer control input."
+      },
+      "icon": "assets/icon.png"
+    },
+    "publish": [],
+    "directories": {
+      "buildResources": "assets",
+      "output": "release"
+    },
+    "npmRebuild": false
+  }
+}

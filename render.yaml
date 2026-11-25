@@ -1,0 +1,21 @@
+# Render Blueprint for RemoteLink (free plan only).
+services:
+  - type: web
+    name: remotelink-signal
+    runtime: node
+    plan: free
+    rootDir: server
+    buildCommand: npm ci
+    startCommand: node server.js
+    healthCheckPath: /healthz
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: TRUST_PROXY
+        value: "1"
+  - type: web
+    name: remotelink-download
+    runtime: static
+    rootDir: site
+    buildCommand: "true"
+    staticPublishPath: .

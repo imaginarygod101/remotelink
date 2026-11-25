@@ -1,0 +1,8 @@
+Public download verification 2026-11-25 18:14 WAT via https://znvjbtih.workslocal.exposed
+SHA256SUMS.txt: 6 entries
+RemoteLink-0.2.0-linux-amd64.deb | 105626424 bytes | HASH OK | 26 s
+RemoteLink-0.2.0-linux-x86_64.AppImage | 109051904 bytes | FAILED at byte 109051904 | 78 s
+RemoteLink-0.2.0-source.tar.gz |  bytes |  | 0 s
+RemoteLink-0.2.0-win-x64.zip |  bytes |  | 0 s
+RemoteLink-Setup-0.2.0-win-x64.exe |  bytes |  | 0 s
+RemoteLink-Viewer-0.2.0-android-debug.apk |  bytes |  | 0 s

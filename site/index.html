@@ -1,0 +1,68 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RemoteLink 0.2.0 — downloads</title><style>
+body{font-family:system-ui,sans-serif;margin:0;background:#0f172a;color:#e2e8f0;line-height:1.45}header{background:#1e40af;padding:18px 24px}header h1{margin:0;font-size:26px}
+main{max-width:1100px;margin:auto;padding:16px 24px}table{border-collapse:collapse;width:100%}td,th{padding:8px;border-bottom:1px solid #334155;vertical-align:top;text-align:left}
+tr.h td{border-bottom:2px solid #475569;padding-top:0}code{font-size:12px;word-break:break-all;color:#94a3b8}small{color:#94a3b8}
+.st{padding:2px 8px;border-radius:10px;font-size:13px}.ok{background:#166534}.un{background:#92400e}button{padding:7px 14px;font-size:15px;cursor:pointer}
+.box{background:#1e293b;border-radius:8px;padding:12px 18px;margin:14px 0}.warn{border-left:4px solid #f59e0b}a{color:#93c5fd}#sig{font-size:17px;color:#fde68a}
+.pr{font-size:12px;color:#a7f3d0;max-width:180px}</style></head><body>
+<header><h1>RemoteLink 0.2.0</h1><div>Transparent, consent-based remote desktop. Open source test release.</div></header><main>
+<div class="box warn"><b>Test release, so please read this first.</b> These builds are <b>unsigned</b>. Windows SmartScreen will say "Windows protected your PC" (click <i>More info → Run anyway</i> only if the SHA-256 below matches).
+This page and the signaling server run on free temporary tunnels from one test computer. They <b>expire after about 2 hours, drop after a few hundred MB of downloads, and come back at a new address</b>. If a download fails, reload this page from its newest address. There is no TURN relay yet, so some networks (strict corporate or carrier NAT) will not connect.
+macOS and iOS builds are not available yet (they must be built and signed on a Mac).</div>
+<div class="box"><b>What RemoteLink does:</b> one computer (the <i>host</i>) shows a 9-digit code. Another device (the <i>viewer</i>) enters it. Nothing is shared until the person at the host clicks <b>Allow</b>. Control of mouse/keyboard is a separate, unticked-by-default checkbox.
+While a session runs, the host shows a red <b>SESSION ACTIVE</b> banner with an <b>End session</b> button. Either side can end it at any time. Nothing runs in the background or at startup.</div>
+<h2>Downloads</h2><p><small>"Download" fetches the file in pieces (this temporary tunnel limits single responses to about 20 MB), checks its SHA-256 in your browser, and then saves it under its real name. For files over 20 MB the direct link may fail on this tunnel. Full list: <a href="downloads/SHA256SUMS.txt">SHA256SUMS.txt</a>.</small></p>
+<table><tr><th>File</th><th>System</th><th>Size</th><th>Status</th><th></th></tr><tr><td><b>RemoteLink-0.2.0-linux-amd64.deb</b><br><small>sudo apt install ./file.deb</small></td><td>Debian/Ubuntu x86_64</td><td>100.7 MB</td>
+<td><span class="st un">untested</span><br><small>Same app as the AppImage; package not install-tested.</small></td>
+<td><button data-f="RemoteLink-0.2.0-linux-amd64.deb" data-h="98d216f7f0db2f5e1ae6cd5a71d04dbf123c62dd39ee7674e8593268b6e4a8b7" data-s="105627000">Download</button><br><small><a href="downloads/RemoteLink-0.2.0-linux-amd64.deb" download>direct link</a></small><div class="pr"></div></td></tr>
+<tr class="h"><td colspan="5"><code>SHA-256 98d216f7f0db2f5e1ae6cd5a71d04dbf123c62dd39ee7674e8593268b6e4a8b7</code></td></tr><tr><td><b>RemoteLink-0.2.0-linux-x86_64.AppImage</b><br><small>chmod +x, then run</small></td><td>Linux x86_64 (X11)</td><td>124.5 MB</td>
+<td><span class="st ok">tested</span><br><small>Tested on Debian 13 (Xvfb/X11): host consent, SESSION ACTIVE banner, view-only and control sessions over the public signaling URL. Wayland sessions untested.</small></td>
+<td><button data-f="RemoteLink-0.2.0-linux-x86_64.AppImage" data-h="27a9f92e27aa717e64ef6eaade222cbad149b08d1c941ced989c5e11ae55e0c2" data-s="130533792">Download</button><br><small><a href="downloads/RemoteLink-0.2.0-linux-x86_64.AppImage" download>direct link</a></small><div class="pr"></div></td></tr>
+<tr class="h"><td colspan="5"><code>SHA-256 27a9f92e27aa717e64ef6eaade222cbad149b08d1c941ced989c5e11ae55e0c2</code></td></tr><tr><td><b>RemoteLink-0.2.0-source.tar.gz</b><br><small>Full source: server, desktop, mobile, tests</small></td><td>Any</td><td>0.3 MB</td>
+<td><span class="st un">n/a</span><br><small>Build macOS/iOS from this on a Mac (see DEPLOY.md).</small></td>
+<td><button data-f="RemoteLink-0.2.0-source.tar.gz" data-h="1be0971f79bc2e674452b7f1f8479fbe54cb1163fb907e177e51825f44f6628f" data-s="329083">Download</button><br><small><a href="downloads/RemoteLink-0.2.0-source.tar.gz" download>direct link</a></small><div class="pr"></div></td></tr>
+<tr class="h"><td colspan="5"><code>SHA-256 1be0971f79bc2e674452b7f1f8479fbe54cb1163fb907e177e51825f44f6628f</code></td></tr><tr><td><b>RemoteLink-0.2.0-win-x64.zip</b><br><small>Portable: unzip, run RemoteLink.exe, nothing installed</small></td><td>Windows 10/11 (64-bit)</td><td>150.9 MB</td>
+<td><span class="st un">untested</span><br><small>Same app as the installer; not yet run on real Windows. Unsigned.</small></td>
+<td><button data-f="RemoteLink-0.2.0-win-x64.zip" data-h="339138c51417a763038d1488ab4270a357439b1f98600e81882fc8657e7b8e11" data-s="158281640">Download</button><br><small><a href="downloads/RemoteLink-0.2.0-win-x64.zip" download>direct link</a></small><div class="pr"></div></td></tr>
+<tr class="h"><td colspan="5"><code>SHA-256 339138c51417a763038d1488ab4270a357439b1f98600e81882fc8657e7b8e11</code></td></tr><tr><td><b>RemoteLink-Setup-0.2.0-win-x64.exe</b><br><small>Installer (choose folder, Start-menu + desktop shortcut, uninstaller in Apps &amp; features)</small></td><td>Windows 10/11 (64-bit)</td><td>119.6 MB</td>
+<td><span class="st un">untested</span><br><small>Built on Linux with electron-builder + NSIS. Not yet run on a real Windows PC (Wine could not render Electron). Unsigned: SmartScreen will warn.</small></td>
+<td><button data-f="RemoteLink-Setup-0.2.0-win-x64.exe" data-h="04f63944b676b9d4debdb23a089ec17310a6930ebc4e59ec815c09c52bc39a17" data-s="125448990">Download</button><br><small><a href="downloads/RemoteLink-Setup-0.2.0-win-x64.exe" download>direct link</a></small><div class="pr"></div></td></tr>
+<tr class="h"><td colspan="5"><code>SHA-256 04f63944b676b9d4debdb23a089ec17310a6930ebc4e59ec815c09c52bc39a17</code></td></tr><tr><td><b>RemoteLink-Viewer-0.2.0-android-debug.apk</b><br><small>Allow &quot;install unknown apps&quot; for your browser, then open the APK</small></td><td>Android 7+ (viewer only)</td><td>4.2 MB</td>
+<td><span class="st ok">tested (emulator)</span><br><small>Debug-signed test build. Tested on an Android 14 emulator viewing a Linux host: live screen + tap-to-click. Not tested on a physical phone. Cannot share/control the phone itself.</small></td>
+<td><button data-f="RemoteLink-Viewer-0.2.0-android-debug.apk" data-h="313e4f701433a1e0f2a9455a984848b16bad1196097a4d845bb86a1448869efc" data-s="4363955">Download</button><br><small><a href="downloads/RemoteLink-Viewer-0.2.0-android-debug.apk" download>direct link</a></small><div class="pr"></div></td></tr>
+<tr class="h"><td colspan="5"><code>SHA-256 313e4f701433a1e0f2a9455a984848b16bad1196097a4d845bb86a1448869efc</code></td></tr></table>
+<h2>How to connect two of your own devices</h2><ol>
+<li>Install RemoteLink on the computer you want to see or control (the host), and on the device you're connecting from (computer or Android viewer).</li>
+<li>Both apps must use the same signaling server. This page's server is:<br><code id="sig"></code><br>Builds downloaded from this page use the address that was current when they were built. If it has changed since, paste the address above into <b>Settings → Signaling server → Save</b> (Android: Settings → Save).</li>
+<li>On the host, click <b>Share my screen (Host)</b>. A 9-digit code appears. It's valid for 10 minutes and works once.</li>
+<li>On the viewer, type the code and click <b>Connect</b>.</li>
+<li>On the host, a "RemoteLink connection request" appears. Click <b>Allow</b>. Tick "Also allow control of my mouse and keyboard" only if you want the viewer to control it.</li>
+<li>To stop, click <b>End session</b> on either side, or close the app.</li></ol>
+<p><small>Linux hosts: an X11 session is required for screen capture and input (Wayland is untested). macOS hosts (when built) will need Screen Recording and Accessibility permission in System Settings. Phones can be viewers only. iPhone cannot be remote-controlled because iOS provides no API for that.</small></p>
+<h2>What has been tested</h2><ul>
+<li>Linux AppImage (packaged) as host ↔ Linux viewer, through this public signaling URL: consent prompt shown, <b>not</b> auto-approved, 29.4 fps at 1280×800, data-channel RTT p50 1.0 ms, view-only correctly blocked input.</li>
+<li>Android 14 emulator (this APK) as viewer → Linux host via the public URL: live screen at 27 fps, ICE RTT 12 ms, tap-to-click injected on the host, End from phone closed the host session.</li>
+<li>Signaling over the public wss:// URL: connect 0.15–0.46 s, message RTT p50 29–32 ms / p95 33–41 ms.</li>
+<li>Second connection request on the host starts with "allow control" unticked again. A bug where it stayed ticked was found and fixed in this build.</li>
+<li><b>Not yet tested:</b> two physical devices on different home/mobile networks, Windows on real hardware, the .deb install, macOS, iOS.</li></ul>
+<p><small>Generated 2026-11-25 18:21 WAT. Source code is included in the source archive above.</small></p>
+</main><script>
+fetch('signaling.json', { cache: 'no-store' }).then(r => r.json()).then(j => { document.getElementById('sig').textContent = j.url; }).catch(() => { document.getElementById('sig').textContent = '(signaling server offline)'; });
+const CH = 8 * 1024 * 1024;
+async function get(btn) {
+  const name = btn.dataset.f, want = btn.dataset.h, size = +btn.dataset.s, pr = btn.parentElement.querySelector('.pr'); btn.disabled = true;
+  try { const parts = [];
+    for (let off = 0; off < size; off += CH) { const end = Math.min(off + CH, size) - 1; let ok = false;
+      for (let t = 0; t < 5 && !ok; t++) { try { const r = await fetch('downloads/' + encodeURIComponent(name), { headers: { Range: `bytes=${off}-${end}` }, cache: 'no-store' });
+        const b = await r.arrayBuffer(); if ((r.status === 206 || r.status === 200) && b.byteLength === end - off + 1) { parts.push(b); ok = true; } } catch (e) {} }
+      if (!ok) throw new Error('chunk failed at ' + off); pr.textContent = `Downloading… ${Math.round(100 * (end + 1) / size)}%`; }
+    pr.textContent = 'Checking SHA-256…'; const blob = new Blob(parts, { type: 'application/octet-stream' });
+    const got = [...new Uint8Array(await crypto.subtle.digest('SHA-256', await blob.arrayBuffer()))].map(x => x.toString(16).padStart(2, '0')).join('');
+    if (got !== want) throw new Error('SHA-256 mismatch, file not saved');
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove();
+    pr.textContent = 'Saved as ' + name + ' (SHA-256 verified ✓)';
+  } catch (e) { pr.textContent = 'Failed: ' + e.message + '. Try again or use the direct link.'; } finally { btn.disabled = false; }
+}
+document.querySelectorAll('button[data-f]').forEach(b => b.onclick = () => get(b));
+</script></body></html>

@@ -1,0 +1,13 @@
+[132532:1125/181418.013889:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[132532:1125/181418.244863:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[132532:1125/181418.244940:ERROR:dbus/bus.cc:406] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[132569:1125/181418.289923:ERROR:gpu/command_buffer/service/gpu_persistent_cache.cc:137] Persistent cache error: 1
+STATUS Connecting to wss://znvjbtih.workslocal.exposed …
+STATUS Waiting for the host to approve…
+STATUS Approved. Connecting…
+PC connecting
+PC connected
+STATUS Connected
+RESULT={"resolution":"1280x800","fps":29.2,"rtt_ms":{"p50":0.8,"p95":1.3,"max":2.6},"framesDecoded":384,"iceRtt_ms":1,"pair":"host/udp -> host/udp","stunSrflxCandidates":0,"approvedToConnected_ms":150}
+STATUS Session ended: test complete
+STATUS Session ended: viewer_ended
